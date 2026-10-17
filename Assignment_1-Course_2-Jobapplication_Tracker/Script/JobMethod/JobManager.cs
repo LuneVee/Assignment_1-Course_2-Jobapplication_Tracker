@@ -755,7 +755,70 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Job_Metohds
         public void ShowStatistics()
         {
 
-        }
+            var GroupBy = Applications
+                .GroupBy(application => application.Status)
+                .OrderBy(application => application.Key);
+
+
+            //Write ShowStatistics Menu!
+            Console.WriteLine(Print.text["Title"]);
+            Console.WriteLine($"         <:Show Statistics:>                   (You got {Applications.Count()} applications)");
+
+
+            if (Applications.Count > 0)
+            {
+
+                //
+                foreach (var application in GroupBy)
+                {
+
+                    Console.Write($":{application.Count()} {application.Key}  |");
+
+
+                    //
+                    foreach (var app in application)
+                    {
+
+                        Console.Write($"   ({app.CompanyName})");
+                        app.DaysSinceApplied();
+
+                    }
+                    Console.Write("\n");
+                }
+                Console.WriteLine("");
+
+                var ResponseDays = Applications.
+                    Where(application => application.ResponseTimeDays >= 0).
+                    Average(application => (application.ResponseDate - application.ApplicationDate).TotalDays);
+
+
+                //
+                if (ResponseDays > 0)
+                {
+                    Console.WriteLine($"Average Response Time: {((int)ResponseDays)} days");
+
+                }
+
+                //
+                else
+                {
+                    Console.WriteLine("Average Response Time: Have Not Resived any responses!");
+
+                }
+
+            }
+
+            else
+            {
+                Console.WriteLine("You got no Applications!");
+            }
+
+
+            Console.ReadKey();
+
+
+
+        }//Finish running task!
 
 
 
