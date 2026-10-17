@@ -492,7 +492,33 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Job_Metohds
         public void ShowApplicationsByStatus()
         {
 
-        }
+            //var AppSortByStatus = Applications.OrderBy(a => a.Status);
+
+            var AppSortByStatus = Applications.
+                GroupBy(status => status.Status).
+                OrderBy(status => status.Key);
+
+            //Write ShowApplicationByStatus Menu!
+            Console.WriteLine(Print.text["Title"]);
+            Console.WriteLine($"         <:Update Status:>                   (You got {Applications.Count()} applications)");
+
+            foreach (var application in AppSortByStatus)
+            {
+
+                Console.WriteLine("");
+                Console.Write($"{application.Key}:");
+                foreach (var App in application)
+                {
+                    Console.Write($" ({App.CompanyName}) ");
+                }
+
+            }
+
+            Console.ReadKey();
+            Console.Clear();
+
+
+        }//Finish running task!
 
 
 
