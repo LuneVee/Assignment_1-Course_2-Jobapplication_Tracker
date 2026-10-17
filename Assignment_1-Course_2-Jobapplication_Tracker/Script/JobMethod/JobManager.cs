@@ -292,17 +292,97 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Job_Metohds
         }//Finish running task!
 
 
+        //Show Applications!
+        public void ShowApplications()
+        {
+
+            //Write AddApplication Menu!
+            Console.WriteLine(Print.text["Title"]);
+            Console.WriteLine($"         <:Show Application:>                   (You got {Applications.Count()} applications)");
+
+            Console.WriteLine($"(All)  (Esc)  ");
+            User.Int = 0;
+            foreach (var application in Applications)
+            {
+                Console.Write($"({application.CompanyName})  ");
+                User.Int++;
+
+                if (User.Int >= 4)
+                {
+                    Console.Write("\n");
+                    User.Int = 0;
+                }
+            }
+            User.Int = 0;
+
+            //
+            Console.Write("Input: ");
+            User.ReadInput();
+
+            //If User.Input == All, print all job applications!
+            if (User.Input.ToLower() == "all" || User.Input.ToLower() == "esc")
+            {
+
+                switch (User.Input.ToLower())
+                {
+
+                    case "all":
+
+                        Console.Clear();
+                        Console.WriteLine(Print.text["Title"]);
+                        Console.WriteLine($"         <:Show Application:>                   (You got {Applications.Count()} applications)");
+
+
+                        foreach (var application in Applications)
+                        {
+
+                            application.GetSummary();
+
+                        }
+
+                        break;
+
+
+                    case "esc":
+                        Console.Clear();
+                        return;
+
+
+                }
+
+            }
+
+            //If User.Input == Existing Application, print that Job Application!
+            else if (Applications.Exists(application => application.CompanyName.ToLower() == User.Input.ToLower()))
+            {
+                User.Int = Applications.FindIndex(application => application.CompanyName.ToLower() == User.Input.ToLower());
+
+                Console.Clear();
+                Console.WriteLine(Print.text["Title"]);
+                Console.WriteLine($"         <:Show Application:>                   (You got {Applications.Count()} applications)");
+
+
+                Applications[User.Int].GetSummary();
+                Console.WriteLine("");
+
+            }
+
+            //If User.Input don't == anything, type that it's a Invalied Command!
+            else
+            {
+                Console.WriteLine("Invalied Command!");
+            }
+
+            Console.ReadKey();
+
+
+        }//Finish running task!
+
+
+
 
         //UpdateStatus of a Application!
         public void UpdateStatus()
-        {
-
-        }
-
-
-
-        //Show Applications!
-        public void ShowApplications()
         {
 
         }
