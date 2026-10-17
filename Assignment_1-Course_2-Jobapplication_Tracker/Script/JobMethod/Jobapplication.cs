@@ -45,6 +45,24 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Job_Metohds
                 //Run DaysSinceApplied(); method!
                 DaysSinceApplied();
 
+                //Write 
+                Console.WriteLine($"Company Name        :({CompanyName})");
+                Console.WriteLine($"Job Position        :({PositionTitle})");
+                Console.WriteLine($"Current Status      :({Status})");
+                Console.WriteLine($"Application Date    :({ApplicationDate.Year}/{ApplicationDate.Month}/{ApplicationDate.Day})");
+
+                //Write Response Date if >= 0!
+                if (ResponseTimeDays >= 0)
+                {
+                    Console.WriteLine($"Response time       :({ResponseTimeDays} days)");
+
+                }
+                else
+                {
+                    Console.WriteLine($"Response time       :(Response NOT received)");
+                }//
+
+                Console.WriteLine($"Salary Expectation  :({SalaryExpectaion})");
 
             }
 
