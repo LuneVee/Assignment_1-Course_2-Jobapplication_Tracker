@@ -26,7 +26,7 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Utilities
 
             Console.BackgroundColor = ConsoleColor.Red;                         //Turn character background RED!
             Console.ForegroundColor = ConsoleColor.White;                       //Turn characters WHITE!
-            Console.WriteLine($"ERROR! {ErrorMessage}");                        //Write Message to Console Application!
+            Console.Write($"ERROR! {ErrorMessage}");                        //Write Message to Console Application!
             Console.ResetColor();                                               //Reset character colors!
 
         }
