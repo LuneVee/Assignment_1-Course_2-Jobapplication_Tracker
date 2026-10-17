@@ -559,7 +559,195 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Job_Metohds
         public void RemoveApplication()
         {
 
-        }
+            //Write RemoveApplication Menu!
+            Console.WriteLine(Print.text["Title"]);
+            Console.WriteLine($"         <:Remove Application:>                   (You got {Applications.Count()} applications)");
+
+            //Creating a Queue variable!
+            Queue<string> CommandsQueue = new Queue<string>(["All", "Rejected", "Older Then X Days"]);
+
+            //Adding all Application Company Names to the Queue!
+            foreach (var application in Applications)
+            {
+                CommandsQueue.Enqueue(application.CompanyName);
+            }
+
+            //Write the Avalabiel commands, all the strings inside of CommandsQueue!
+            int CommandRange = 4;
+            User.Int = 0;
+
+            foreach (string application in CommandsQueue)
+            {
+                //
+                User.Int++;//Adding 1 Command!
+
+                if (User.Int > CommandRange)
+                {
+                    User.Int = 0;
+                    Console.Write("\n");
+
+                }
+                
+                Console.Write($"({application})  ");
+
+            }
+            Console.WriteLine("");
+            Console.WriteLine("\n<=:What Application would you like to Remove?:=>");
+
+            //
+            Console.Write("Input: ");
+            User.ReadInput();
+
+
+            switch (User.Input.ToLower())
+            {
+                //
+                case "all":
+                    Console.WriteLine("Are you sure you want to Remove All Applications?");
+                    Console.WriteLine("(Yes)     (No)");
+                    User.ReadInput();
+
+                    //Check if User.Input == Yes or No. Tell user that the Input is invaled if not true!
+                    while (User.Input.ToLower() != "yes" && User.Input.ToLower() != "no")
+                    {
+
+                        Console.WriteLine("Wrong command! Type ``Yes´´ or ``no´´");
+                        Console.Write("Input: ");
+                        User.ReadInput();
+
+                    }
+
+                    //If 
+                    switch (User.Input.ToLower())
+                    {
+
+                        //
+                        case "yes":
+                            Applications = new List<Jobapplication>();
+                            Console.WriteLine("Application list is now clean! \nAll applications have been Removed!");
+                            break;
+
+
+                        //
+                        case "no":
+                            Console.WriteLine("Canceling Removel of All Applications!");
+                            break;
+
+                    }
+
+
+                    break;//
+
+
+
+                //
+                case "rejected":
+                    Console.WriteLine("Are you sure you want to remove Rejected Applications?");
+                    Console.WriteLine("(Yes)     (No)");
+
+                    User.ReadInput();
+
+                    //Check if User.Input == Yes or No. Tell user that the Input is invaled if not true!
+                    while (User.Input.ToLower() != "yes" && User.Input.ToLower() != "no")
+                    {
+
+                        Console.WriteLine("Wrong command! Type ``Yes´´ or ``no´´");
+                        Console.Write("Input: ");
+                        User.ReadInput();
+
+                    }
+
+                    switch (User.Input.ToLower())
+                    {
+                        case "yes":
+                            //var SelectedTargets = Applications.GroupBy(application => application.Status == JobApplication_Class.ApplicationStatus.Rejected);
+
+                            Applications.RemoveAll(application => application.Status == Jobapplication.ApplicationStatus.Rejected);
+                            break;
+
+
+                        case "no":
+                            Console.WriteLine($"Canceling Removel of Rejeccted Applications!");
+                            break;
+
+
+                    }
+
+
+                    break;//
+
+
+
+                //Set how many days old a application can be. If the application is older then X days ago, remove them from Applications list!
+                case "older then x days":
+                case "older":
+                case "x days":
+                case "x":
+                    Console.WriteLine("How many days back?");
+                    Console.Write("Input: ");
+                    User.ReadInt();
+
+                    Applications.RemoveAll(application => application.ApplicationDate.Date < DateTime.Now.AddDays(-User.Int).Date);
+
+                    break;//
+
+
+
+                //If non of the main Commands, check if User.Input == Application.CompanyName. If not tell the User that they typed a invalied command!
+                default:
+
+                    //
+                    if (Applications.Exists(application => application.CompanyName.ToLower() == User.Input.ToLower()))
+                    {
+                        //
+                        string SelectedApplication = User.Input;
+                        Console.WriteLine($"Are you sure you want to remove ({SelectedApplication})?");
+                        Console.WriteLine("(Yes)     (No)");
+
+                        User.ReadInput();
+
+                        while (User.Input.ToLower() != "yes" && User.Input.ToLower() != "no")
+                        {
+
+                            Console.WriteLine("Invalied Command! \nType ``Yes´´ or ``No´´!");
+                            User.ReadInput();
+
+                        }
+
+                        switch (User.Input.ToLower())
+                        {
+
+                            //If User type Yes, Remove application from Applications!
+                            case "yes":
+                                Applications.RemoveAll(application => application.CompanyName == SelectedApplication);
+                                Console.WriteLine($"{SelectedApplication} has been Removed from Applications list!");
+                                break;
+
+
+                            //If User type No, cancel the process!
+                            case "no":
+                                Console.WriteLine($"Canceling Removel of {SelectedApplication}!");
+                                break;
+
+                        }
+
+                    }
+
+                    //
+                    else
+                    {
+                        Console.WriteLine("Invalied Command!");
+
+                    }
+                    break;//
+
+
+            }
+
+            Console.ReadKey();
+            Console.Clear();
+
+        }//Finish running task!
 
 
 
