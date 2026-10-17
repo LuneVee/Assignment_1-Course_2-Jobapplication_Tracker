@@ -76,7 +76,7 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Job_Metohds
 
 
         //Create and add a Application to Applications list!
-        public void AddJobApplication()
+        public void AddJobapplication()
         {
             //Creating a Job Application!
             Jobapplication JobApp = new Jobapplication();
