@@ -526,7 +526,32 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Job_Metohds
         public void ShowApplicationsByDate()
         {
 
-        }
+            //var AppSortByStatus = Applications.OrderBy(a => a.Date);
+
+            var AppSortByStatus = Applications
+                .GroupBy(date => date.ApplicationDate)
+                .OrderBy(date => date.Key)
+                .Reverse();
+
+            Console.WriteLine($"     <=:All Applications:=>");
+            Console.WriteLine(":Application Date:");
+            foreach (var application in AppSortByStatus)
+            {
+
+                Console.WriteLine("");
+                Console.Write($"{application.Key.Year}/ {application.Key.Month}/ {application.Key.Day}:");
+                foreach (var app in application)
+                {
+                    Console.Write($" ({app.CompanyName}) ");
+                }
+
+            }
+
+            Console.ReadKey();
+            Console.Clear();
+
+
+        }//Finish running task!
 
 
 
