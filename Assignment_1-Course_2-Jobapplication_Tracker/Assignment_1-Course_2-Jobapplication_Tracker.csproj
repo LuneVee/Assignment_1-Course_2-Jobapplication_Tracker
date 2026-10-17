@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <Folder Include="Script\JobMethod\" />
+    <Folder Include="Script\Utilities\" />
   </ItemGroup>
 
 </Project>
