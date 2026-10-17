@@ -296,7 +296,7 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Job_Metohds
         public void ShowApplications()
         {
 
-            //Write AddApplication Menu!
+            //Write ShowApplication Menu!
             Console.WriteLine(Print.text["Title"]);
             Console.WriteLine($"         <:Show Application:>                   (You got {Applications.Count()} applications)");
 
@@ -384,8 +384,107 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Job_Metohds
         //UpdateStatus of a Application!
         public void UpdateStatus()
         {
+            //Write UpdateStatus Menu!
+            Console.WriteLine(Print.text["Title"]);
+            Console.WriteLine($"         <:Update Status:>                   (You got {Applications.Count()} applications)");
+            Console.WriteLine("(Esc)");
 
-        }
+
+            //If no application in Applications!
+            if (Applications.Count < 1)
+            {
+                Console.WriteLine("You have no available Applications!");
+                Console.ReadKey();
+                Console.Clear();
+                return;
+            }
+
+            //If application/ applications exist in Applications!
+
+            //Print the Job Applications name so the user can see them!
+            User.Int = 0;
+            foreach (var application in Applications)
+            {
+                Console.Write($"({application.CompanyName})   ");
+                User.Int++;
+                if (User.Int >= 4)
+                {
+                    Console.Write("\n");
+                    User.Int = 0;
+                }
+            }
+            Console.WriteLine("");
+            User.Int = 0;
+
+            //Ask User for input!
+            Console.Write("Input: ");
+            User.ReadInput();
+            
+            switch (User.Input.ToLower())
+                {
+                
+                case "esc":
+                    Console.Clear();
+                    break;
+                
+                default:
+                    
+                    if (Applications.Exists(application => application.CompanyName.ToLower() == User.Input.ToLower()))
+                    {
+                        
+                        var AppIndex = Applications.FindIndex(application => application.CompanyName.ToLower() == User.Input.ToLower());
+
+                        Console.WriteLine("<=:What is the new status?:=>");
+                        Console.WriteLine("1.(Applied)   2.(Interviewed)   3.(Offered)   4.(Rejected)   ");
+
+                        Console.Write("Input");
+                        User.ReadInput();
+                        
+                        switch (User.Input.ToLower())
+                        {
+                            
+                            default:
+                                Print.ErrorCode("Invalie Input!");
+                                break;
+                            
+                            case "1":
+                            case "applied":
+                                Applications[AppIndex].Status = Jobapplication.ApplicationStatus.Applied;
+                                break;
+
+                            case "2":
+                            case "interviewed":
+                            case "interview":
+                                Applications[AppIndex].Status = Jobapplication.ApplicationStatus.Interview;
+                                break;
+                            
+                            case "3":
+                            case "offered":
+                            case "offer":
+                                Applications[AppIndex].Status = Jobapplication.ApplicationStatus.Offer;
+                                break;
+                            
+                            case "4":
+                            case "rejected":
+                            case "reject":
+                                Applications[AppIndex].Status = Jobapplication.ApplicationStatus.Rejected;
+                                break;
+
+                            }
+
+                            Console.WriteLine("Status has been updated!");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Name NOT found!");
+                        }
+
+                        break;
+
+            }
+
+        }//Finish running task!
 
 
 
