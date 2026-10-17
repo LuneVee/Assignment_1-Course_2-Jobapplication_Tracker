@@ -80,7 +80,7 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker
                     //Add Job Application to Applications list!
                     case "1":
                         Console.Clear();
-                        JobManager.AddJobApplication();
+                        JobManager.AddJobapplication();
                         Console.Clear();
                         break;
 
