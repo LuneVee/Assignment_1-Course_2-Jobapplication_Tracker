@@ -71,9 +71,20 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker
                 {
                     //If User Input == ``no case found´´ tell the user that is a Invalid Command and go back to start in while!
                     default:
-                        Console.Clear();
-                        Console.WriteLine("Invalied Command!");
-                        Console.Clear();
+
+                        if(User.ValiedInput == true)
+                        {
+                            Print.ErrorCode("INVALID INPUT! You need to type one of the Veiled Commands!");
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+
+                        else
+                        {
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
+
                         break;
 
 

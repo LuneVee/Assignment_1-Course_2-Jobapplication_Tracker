@@ -10,6 +10,7 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Utilities
         //User Values!
         public static string? Input;        //string value. Type User.Input to access it!
         public static int Int = 0;          //int value. Type User.int_Input to access it!
+        public static bool ValiedInput = false;
 
 
 
@@ -19,10 +20,16 @@ namespace Assignment_1_Course_2_Jobapplication_Tracker.Scripts.Utilities
         {
 
             Input = Console.ReadLine();                                             //Read what User entered and set it as User Input!
-            while (Input.IsWhiteSpace())                                            //While User Input is empty or only space!
+            if (Input.IsWhiteSpace())                                            //While User Input is empty or only space!
             {
                 Print.ErrorCode("EMPTY INPUT! You need to type something!");        //Tell that the User has entered a empty Input and that they need to try again!
-                Input = Console.ReadLine();                                         //Read what User entered and set it as User Input!
+                ValiedInput = false;
+                return;
+                
+            }
+            else
+            {
+                ValiedInput = true;
             }
 
         }
