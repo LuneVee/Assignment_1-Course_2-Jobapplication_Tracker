@@ -5,3 +5,4 @@ LINQ gjorde det smidigare att skapa grupper från en lista. Det underlättade oc
 
 2. Vilken del av projektet var mest utmanande, och hur löste du den?
 Jag skulle säga att det mest utmanande med projektet var att säkerställa att jag hade implementerat alla metoder som behövde vara med. En annan utmaning var att lista ut hur jag skulle lägga till datumkontroller i projektet. Jag ville se till att man inte kunde ange ett datum som ännu inte hade inträffat och att man inte kunde ange att man hade fått ett svar på sin ansökan innan man faktiskt hade skickat in den. 😅
+Sen var hade jag en hel del problem med GitHub. Gjord om projektet ett x antal gånger för att branches fick konflikter. 😓
